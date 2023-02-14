@@ -1,4 +1,6 @@
 __pycache__
 
 test.*
+data.csv
+
 py_to_exe.bat

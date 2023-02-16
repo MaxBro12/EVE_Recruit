@@ -1,6 +1,7 @@
 import re
 
 from os.path import exists, join, splitext
+from os import get_terminal_size
 
 from debug import create_log_file
 from start import main_cheack, create_prof
@@ -10,7 +11,7 @@ from clipb import write_to_cb, get_from_cp
 
 
 def file_dir_creator(name: str = 'data') -> str:
-    if len(splitext(name)) == 1:
+    if splitext(name)[1] == '':
         name += '.csv'
     name = join(profile_dir, name)
     return name
@@ -26,13 +27,15 @@ def load_profile() -> Table:
         if not exists(profile_file):
             ans = input(
                 f'Профиль {profile} не существует!'
-                'Создать? - Y / Повторить ввод - n'
+                'Создать? - Y / Повторить ввод - n:  '
             )
             if ans in accept:
+                print(profile_file)
                 create_prof(profile_file)
                 return Table(profile_file)
             else:
                 return load_profile()
+        return Table(profile_file)
 
 
 def main():
@@ -41,37 +44,43 @@ def main():
 
     # ! Подгрузка профиля
     base = load_profile()
+    print(type(base))
     copy_msg = ''
 
     while True:
-        ans = input('Скопируйте содержимое чата и нажмите enter\n')
-        match ans:
-            case '':
-                pilots = get_from_cp()
+        ans = input('Скопируйте содержимое чата и нажмите Enter\n')
+        if ans == '':
+            pilots = get_from_cp()
 
-                if ',' in pilots:
-                    continue
+            if ',' in pilots:
+                continue
 
-                pilots = pilots.split('\n')
+            pilots = pilots.split('\n')
 
-                if len(pilots) > 0:
-                    for pilot in pilots:
-                        if base.add(pilot):
-                            if copy_msg != '':
-                                copy_msg += ', ' + pilot
-                            else:
-                                copy_msg = pilot
-                    print('Список пилотов для рассылки сохранен в буфер:')
-                    write_to_cb(copy_msg)
-                    print(copy_msg)
-                    copy_msg = ''
+            if len(pilots) > 0:
+                for pilot in pilots:
+                    if base.add(pilot):
+                        if copy_msg != '':
+                            copy_msg += ', ' + pilot
+                        else:
+                            copy_msg = pilot
+                print('Список пилотов для рассылки сохранен в буфер:')
+                print('=' * get_terminal_size()[0])
+                write_to_cb(copy_msg)
+                print(copy_msg)
+                print('=' * get_terminal_size()[0])
+                copy_msg = ''
 
-            case 'EXET':
-                break
+        elif ans == 'EXET':
+            break
 
-            case 'MERGE':
-                ans = input('Через пробел введите названия профилей:\n')
-                ans = ans.split(' ')
+        elif re.match(r'^MERGE\s', ans):
+            ans = ans.split(' ')[1:]
+            for iind, i in enumerate(ans):
+                ans[iind] = Table(file_dir_creator(i))
+            for i in ans[1:]:
+                print(i.data)
+                ans[0].merge(i)
 
 
 if __name__ == '__main__':

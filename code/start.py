@@ -20,4 +20,4 @@ def main_cheack():
 
 
 def create_prof(name: str):
-    create_csv(join(profile_dir, name), csv_data)
+    create_csv(name, csv_data)

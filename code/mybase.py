@@ -31,7 +31,8 @@ class Table():
         return True if self.data['pilot'].isin([pilot]).any() else False
 
     def merge(self, other):
-        self.data.join(other.data)
+        self.data = pd.concat([self.data, other.data])
+        self.save_csv()
 
 
 def create_csv(name: str, inner_data: dict) -> bool:

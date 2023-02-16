@@ -30,6 +30,9 @@ class Table():
     def find(self, pilot: str):
         return True if self.data['pilot'].isin([pilot]).any() else False
 
+    def merge(self, other):
+        self.data.join(other.data)
+
 
 def create_csv(name: str, inner_data: dict) -> bool:
     pd.DataFrame([], columns=['pilot']).to_csv(name, index=False)

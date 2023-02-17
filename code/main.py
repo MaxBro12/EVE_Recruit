@@ -30,7 +30,6 @@ def load_profile() -> Table:
                 'Создать? - Y / Повторить ввод - n:  '
             )
             if ans in accept:
-                print(profile_file)
                 create_prof(profile_file)
                 return Table(profile_file)
             else:
@@ -44,7 +43,6 @@ def main():
 
     # ! Подгрузка профиля
     base = load_profile()
-    print(type(base))
     copy_msg = ''
 
     while True:
@@ -79,8 +77,8 @@ def main():
             for iind, i in enumerate(ans):
                 ans[iind] = Table(file_dir_creator(i))
             for i in ans[1:]:
-                print(i.data)
                 ans[0].merge(i)
+            print('База данных объединена')
 
 
 if __name__ == '__main__':

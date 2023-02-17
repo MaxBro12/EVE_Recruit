@@ -6,7 +6,7 @@ from os import get_terminal_size
 from debug import create_log_file
 from start import main_cheack, create_prof
 from mybase import Table
-from settings import csv_file, profile_dir, accept
+from settings import profile_dir, accept
 from clipb import write_to_cb, get_from_cp
 
 

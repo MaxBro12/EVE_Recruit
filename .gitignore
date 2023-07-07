@@ -1,8 +1,9 @@
 __pycache__
+venv
 
 error.log
 profile
-test.*
 data.csv
+test.*
 
 py_to_exe.bat

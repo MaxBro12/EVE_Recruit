@@ -1,11 +1,15 @@
-from core import (
-    create_log_file,
-)
+from PySide6.QtWidgets import QApplication
+from core import create_log_file
+from client import MyAppMain
 from start import main_check
 
 
 def main():
     profiles, conf = main_check()
+    app = QApplication([])
+    widget = MyAppMain(conf, profiles)
+    widget.show()
+    exit(app.exec())
 
 
 if __name__ == '__main__':

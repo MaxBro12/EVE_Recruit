@@ -1,4 +1,7 @@
 
+# ! Важное
+max_log_len = 100
+
 # ! Папки, файлы
 dir_profile = 'profile'
 file_csv = 'data.csv'
@@ -17,6 +20,13 @@ defaut_letter = 'defaut.txt'
 defaut_profile = 'defaut'
 
 # ! Клиент
+full_min_width = 400
+full_min_height = 600
+
+small_width = 215
+small_height = 35
+
+
 file_hide_icon = 'eve_recruit/icons/hide_icon.svg'
 file_exit_icon = 'eve_recruit/icons/exit_icon.svg'
 

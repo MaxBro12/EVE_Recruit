@@ -18,6 +18,8 @@ from core import (
 )
 
 from settings import (
+    max_log_len,
+
     file_settings,
     file_settings_in,
 
@@ -53,7 +55,7 @@ def main_check() -> tuple:
 def log_file_check():
     if wayfinder(file_logger):
         lens = load_file(file_logger).split('\n')
-        if len(lens) > 100:
-            lens = lens[len(lens) - 100::]
+        if len(lens) > max_log_len:
+            lens = lens[len(lens) - max_log_len::]
             save_file(file_logger, ''.join(lens))
             create_log_file('Log file resave', levelname='debug')

@@ -8,12 +8,15 @@ file_csv = 'data.csv'
 file_settings = 'settings.toml'
 file_logger = 'logger.log'
 file_settings_in = {
+    'pos_x': 550,
+    'pos_y': 350,
     'width': 300,
     'height': 200,
     'opacity': 1,
     'lastprofile': '',
     'resizeable': True,
     'alwayson': True,
+    'use_self_window': True,
 }
 
 defaut_letter = 'defaut.txt'

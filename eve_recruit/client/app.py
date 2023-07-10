@@ -1,12 +1,28 @@
 from PySide6.QtWidgets import (
-    QMainWindow, QStackedWidget, QWidget, QHBoxLayout, QPushButton,
+    QMainWindow,
+    QStackedWidget,
+    QWidget,
+    QHBoxLayout,
+    QPushButton,
+    QVBoxLayout,
 )
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt, QSize, Slot, Signal, QPoint
 
-from core import create_log_file, clone_list, clone_theme, clone_letter, pjoin, get_files
+from core import (
+    create_log_file,
+    clone_list,
+    clone_theme,
+    clone_letter,
+    pjoin,
+    get_files,
+    read,
+    write,
+)
 
 from settings import (
+    file_settings,
+
     dir_profile,
     file_csv,
 
@@ -35,8 +51,8 @@ class MyAppMain(QMainWindow):
         self.setCentralWidget(self.app)
 
         # ? Допы
+        self.conf = config
         self.oldPosition = QPoint()
-        self.always_on_bool = False
 
         # ? Статус бар
         # self.status_bar = self.statusBar()
@@ -44,12 +60,13 @@ class MyAppMain(QMainWindow):
         # ? Топ панель
         self.setWindowIcon(QIcon(file_app_icon))
         self.setWindowTitle('EVE RECRUIT')
-        # self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setWindowFlag(Qt.FramelessWindowHint, self.conf['use_self_window'])
+        self.setWindowFlag(Qt.WindowStaysOnTopHint, self.conf['alwayson'])
 
         # ? Соединияем кнопки
         self.app.close_app_signal.connect(self.close_app)
         self.app.hide_app_signal.connect(self.hide_app)
-        self.app.alwayson_app_signal.connect(self.always_on)
+        self.app.alwayson_app_signal.connect(self.always_on_app)
         self.app.sqeeze_app_signal.connect(self.sqeeze_app)
 
         # ! Изначально запускается режим?
@@ -58,7 +75,6 @@ class MyAppMain(QMainWindow):
         create_log_file('Application launched successfully', levelname='info')
 
     def sqeeze_app(self):
-        print('sqeeeeeeeze')
         if self.app.currentIndex() == 1:
             # ! Переключаемся на полноразмерную прогу
             self.change_to_full()
@@ -69,12 +85,10 @@ class MyAppMain(QMainWindow):
     def mousePressEvent(self, event):
         self.oldPosition = event.globalPosition().toPoint()
 
-
     def mouseMoveEvent(self, event):
         self.move(self.pos() + event.globalPosition().toPoint() - self.oldPosition)
         self.oldPosition = event.globalPosition().toPoint()
         event.accept()
-
 
     def close_app(self):
         self.close()
@@ -82,20 +96,20 @@ class MyAppMain(QMainWindow):
     def hide_app(self):
         self.showMinimized()
 
-    def always_on(self):
-        self.always_on_bool = not self.always_on_bool
-        if self.always_on_bool:
-            self.setWindowFlag(Qt.WindowStaysOnTopHint, True)
-        else:
-            self.setWindowFlag(Qt.WindowStaysOnTopHint, False)
+    def always_on_app(self):
+        self.conf['alwayson'] = not self.conf['alwayson']
+        self.save_config()
 
     def change_to_small(self):
         self.app.setCurrentIndex(1)
         self.setFixedSize(QSize(small_width, small_height))
-    
+
     def change_to_full(self):
         self.app.setCurrentIndex(0)
         self.setMinimumSize(QSize(full_min_width, full_min_height))
+
+    def save_config(self):
+        write(self.conf, file_settings)
 
 
 class MyApp(QStackedWidget):
@@ -103,6 +117,7 @@ class MyApp(QStackedWidget):
     hide_app_signal = Signal()
     alwayson_app_signal = Signal()
     sqeeze_app_signal = Signal()
+
     def __init__(self, config: dict, profiles: list, parent):
         super().__init__(parent=parent)
         self.config = config
@@ -166,11 +181,45 @@ class MyApp(QStackedWidget):
 class FullSizedApp(QWidget):
     def __init__(self, parent) -> None:
         super().__init__(parent=parent)
+        self.row = QHBoxLayout()
+        self.row.setContentsMargins(0, 0, 0, 0)
+        self.row.setSpacing(5)
+        self.row.setAlignment(
+            Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignTop
+        )
+
+        self.always_on_b = QPushButton(self)
+        self.always_on_b.setIcon(QIcon(file_always_on_icon))
+        self.always_on_b.setFixedSize(QSize(25, 25))
+        self.row.addWidget(self.always_on_b)
+
+        self.sqeeze_b = QPushButton(self)
+        self.sqeeze_b.setIcon(QIcon(file_sqeeze_icon))
+        self.sqeeze_b.setFixedSize(QSize(25, 25))
+        self.row.addWidget(self.sqeeze_b)
+
+        self.hide_b = QPushButton(self)
+        self.hide_b.setIcon(QIcon(file_hide_icon))
+        self.hide_b.setFixedSize(QSize(25, 25))
+        self.row.addWidget(self.hide_b)
+
+        self.exit_b = QPushButton(self)
+        self.exit_b.setIcon(QIcon(file_exit_icon))
+        self.exit_b.setFixedSize(QSize(25, 25))
+        self.row.addWidget(self.exit_b)
+
+        # ! Главная разметка
+        self.main_l = QVBoxLayout()
+        self.main_l.setContentsMargins(0, 0, 0, 0)
+        self.main_l.setSpacing(0)
+        self.main_l.addLayout(self.row)
+        self.setLayout(self.main_l)
 
 
 class SmallSizedApp(QWidget):
     def __init__(self, parent) -> None:
         super().__init__(parent=parent)
+
         self.row = QHBoxLayout()
         self.row.setContentsMargins(5, 5, 5, 5)
         self.row.setSpacing(5)

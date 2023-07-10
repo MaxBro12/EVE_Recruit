@@ -2,6 +2,9 @@ from core import (
     create_prof,
     create_log_file,
 
+    load_file,
+    save_file,
+
     create_file,
     create_folder,
 
@@ -17,6 +20,8 @@ from core import (
 from settings import (
     file_settings,
     file_settings_in,
+
+    file_logger,
 
     dir_profile,
     file_csv,
@@ -40,4 +45,15 @@ def main_check() -> tuple:
             pass  # TODO: Сделать окно ошибки
     profiles = get_files(dir_profile)
 
+    log_file_check()
+
     return profiles, conf
+
+
+def log_file_check():
+    if wayfinder(file_logger):
+        lens = load_file(file_logger).split('\n')
+        if len(lens) > 100:
+            lens = lens[len(lens) - 100::]
+            save_file(file_logger, ''.join(lens))
+            create_log_file('Log file resave', levelname='debug')

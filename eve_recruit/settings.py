@@ -3,6 +3,7 @@
 dir_profile = 'profile'
 file_csv = 'data.csv'
 file_settings = 'settings.toml'
+file_logger = 'logger.log'
 file_settings_in = {
     'width': 300,
     'height': 200,
@@ -23,3 +24,4 @@ file_app_icon = 'icons/app_icon.svg'
 file_list_icon = 'icons/list_icon.svg'
 file_theme_icon = 'icons/theme_icons.svg'
 file_letter_icon = 'icons/letter_icon.svg'
+file_always_on_icon = 'icons/always_on_icon.svg'

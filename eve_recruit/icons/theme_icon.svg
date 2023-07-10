@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" width="48px" height="48px" xmlns="http://www.w3.org/2000/svg">
+  <rect x="25.268" y="73.091" width="415.289" height="78.389" style="stroke: rgb(0, 0, 0); fill: rgb(138, 138, 138); stroke-width: 9px;"/>
+  <rect x="19.966" y="189.337" width="227.841" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="265.036" y="189.337" width="120.205" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="19.615" y="228.013" width="125.875" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="156.742" y="228.717" width="227.841" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="398.399" y="228.468" width="74.54" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="400.056" y="188.992" width="71.241" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="-473.144" y="-330.767" width="227.841" height="23.206" style="stroke: rgb(0, 0, 0);" transform="matrix(-1, 0, 0, -1, 0, 0)"/>
+  <rect x="-228.074" y="-330.767" width="120.205" height="23.206" style="stroke: rgb(0, 0, 0);" transform="matrix(-1, 0, 0, -1, 0, 0)"/>
+  <rect x="-473.495" y="-292.091" width="125.875" height="23.206" style="stroke: rgb(0, 0, 0);" transform="matrix(-1, 0, 0, -1, 0, 0)"/>
+  <rect x="-336.368" y="-291.387" width="227.841" height="23.206" style="stroke: rgb(0, 0, 0);" transform="matrix(-1, 0, 0, -1, 0, 0)"/>
+  <rect x="-94.711" y="-291.636" width="74.54" height="23.206" style="stroke: rgb(0, 0, 0);" transform="matrix(-1, 0, 0, -1, 0, 0)"/>
+  <rect x="-93.054" y="-331.112" width="71.241" height="23.206" style="stroke: rgb(0, 0, 0);" transform="matrix(-1, 0, 0, -1, 0, 0)"/>
+  <rect x="21.85" y="346.903" width="227.841" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="266.92" y="346.903" width="120.205" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="21.499" y="385.579" width="125.875" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="158.626" y="386.283" width="227.841" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="400.283" y="386.034" width="74.54" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="401.94" y="346.558" width="71.241" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="23.095" y="423.986" width="227.841" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="23.226" y="16.815" width="227.841" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+</svg>

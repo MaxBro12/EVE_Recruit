@@ -2,11 +2,14 @@ from PySide6.QtWidgets import (
     QMainWindow, QStackedWidget, QWidget, QHBoxLayout, QPushButton,
 )
 from PySide6.QtGui import QIcon
-from PySide6.QtCore import Qt, QSize, Slot
+from PySide6.QtCore import Qt, QSize, Slot, Signal
 
-from core import create_log_file, clone_list, clone_theme, clone_letter, pjoin
+from core import create_log_file, clone_list, clone_theme, clone_letter, pjoin, get_files
 
 from settings import (
+    dir_profile,
+    file_csv,
+
     file_app_icon,
     file_hide_icon,
     file_exit_icon,
@@ -20,16 +23,49 @@ from settings import (
 class MyAppMain(QMainWindow):
     def __init__(self, config: dict, profiles: list) -> None:
         super().__init__()
-        self.setCentralWidget(MyApp(config, profiles, self))
+        self.app = MyApp(config, profiles, self)
+        self.setCentralWidget(self.app)
+
+        # ? Допы
+        self.always_on_bool = False
+
         # ? Статус бар
         self.status_bar = self.statusBar()
+
         # ? Топ панель
         self.setWindowIcon(QIcon(file_app_icon))
-        self.setWindowTitle('EVE REQUIT')
+        self.setWindowTitle('EVE RECRUIT')
         self.setWindowFlags(Qt.FramelessWindowHint)
+
+        # ? Соединияем кнопки
+        self.app.close_app_signal.connect(self.close_app)
+        self.app.hide_app_signal.connect(self.hide_app)
+        self.app.alwayson_app_signal.connect(self.always_on)
+
+        create_log_file('Application launched successfully', levelname='info')
+
+    def resizeEvent(self, event):
+            print("resize")
+            self.resizeEvent(self, event)
+
+    def close_app(self):
+        self.close()
+
+    def hide_app(self):
+        self.showMinimized()
+
+    def always_on(self):
+        self.always_on_bool = not self.always_on_bool
+        if self.always_on_bool:
+            self.setWindowFlag(Qt.WindowStaysOnTopHint, True)
+        else:
+            self.setWindowFlag(Qt.WindowStaysOnTopHint, False)
 
 
 class MyApp(QStackedWidget):
+    close_app_signal = Signal()
+    hide_app_signal = Signal()
+    alwayson_app_signal = Signal()
     def __init__(self, config: dict, profiles: list, parent):
         super().__init__(parent=parent)
         self.config = config
@@ -54,27 +90,34 @@ class MyApp(QStackedWidget):
 
     @Slot()
     def exit_app(self):
-        print('CLOSE')
+        self.close_app_signal.emit()
 
     @Slot()
     def hide_app(self):
-        print('HIDE')
+        self.hide_app_signal.emit()
 
     @Slot()
     def always_on_app(self):
-        print('ALWAYS ON')
+        self.alwayson_app_signal.emit()
 
     @Slot()
     def clone_list_b(self):
-        print('LIST')
+        clone_list(pjoin(dir_profile, self.config['lastprofile'], file_csv))
 
     @Slot()
     def clone_theme_b(self):
-        print('THEME')
+        clone_theme(pjoin(dir_profile, self.config['lastprofile']))
 
     @Slot()
     def clone_letter_b(self):
-        print('LETTER')
+        clone_letter(pjoin(dir_profile, self.config['lastprofile']))
+
+    @staticmethod
+    def get_txt_file(*paths) -> str:
+        return pjoin(
+            *paths,
+            list(filter(lambda x: x.split('.')[1] == 'txt', get_files(pjoin(*paths))))[0]
+        )
 
 
 class FullSizedApp(QWidget):

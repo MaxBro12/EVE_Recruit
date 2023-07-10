@@ -17,7 +17,8 @@ from .filemanage import (
     write,
 
     wayfinder,
-    pjoin
+    pathfinder,
+    pjoin,
 )
 from .clipb import (
     get_from_cp,

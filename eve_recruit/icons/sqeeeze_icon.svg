@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" width="48px" height="48px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1, 0, 0, 1, 2.827913, 9.928756)">
+    <rect x="38.971" y="61.695" width="422.652" height="372.007" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;"/>
+    <rect x="39.069" y="-95.958" width="422.652" height="0.763" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;" transform="matrix(1, 0, 0, -1, 0, 0)"/>
+    <rect x="437.45" y="-80.321" width="3.699" height="1.135" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;" transform="matrix(1, 0, 0, -1, 0, 0)"/>
+    <rect x="416.409" y="-80.134" width="3.699" height="1.135" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;" transform="matrix(1, 0, 0, -1, 0, 0)"/>
+    <rect x="395.182" y="-80.134" width="3.699" height="1.135" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;" transform="matrix(1, 0, 0, -1, 0, 0)"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, -35.434017, 39.046337)">
+    <rect x="201.636" y="217.655" width="176.595" height="34.615" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;"/>
+    <rect x="355.625" y="234.562" width="3.404" height="2.612" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;"/>
+    <rect x="333.589" y="234.553" width="3.404" height="2.612" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;"/>
+    <rect x="310.536" y="234.688" width="3.404" height="2.612" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;"/>
+    <rect x="288.285" y="234.823" width="3.404" height="2.612" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;"/>
+    <rect x="265.933" y="234.823" width="3.404" height="2.612" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;"/>
+    <rect x="242.166" y="234.823" width="3.404" height="2.612" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;"/>
+    <rect x="219.113" y="234.81" width="3.404" height="2.612" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 10px;"/>
+  </g>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 5px;" x1="46.664" y1="110.241" x2="166.781" y2="258.55"/>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 5px;" x1="41.149" y1="444.855" x2="164.944" y2="289.805"/>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 5px;" x1="461.56" y1="107.177" x2="342.055" y2="259.163"/>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 5px;" x1="462.786" y1="441.178" x2="344.506" y2="290.418"/>
+</svg>

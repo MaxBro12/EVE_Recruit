@@ -14,9 +14,10 @@ file_settings_in = {
     'height': 200,
     'opacity': 1,
     'lastprofile': '',
+    'lang': 'ru',
     'resizeable': True,
     'alwayson': True,
-    'use_self_window': True,
+    'use_self_window': False,
 }
 
 defaut_letter = 'defaut.txt'
@@ -35,6 +36,7 @@ file_exit_icon = 'eve_recruit/icons/exit_icon.svg'
 
 file_app_icon = 'eve_recruit/icons/app_icon.svg'
 file_list_icon = 'eve_recruit/icons/list_icon.svg'
+file_add_icon = 'eve_recruit/icons/add_icon.svg'
 file_theme_icon = 'eve_recruit/icons/theme_icon.svg'
 file_letter_icon = 'eve_recruit/icons/letter_icon.svg'
 file_sqeeze_icon = 'eve_recruit/icons/sqeeze_icon.svg'

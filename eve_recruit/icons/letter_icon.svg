@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 500 500" width="48px" height="48px" xmlns="http://www.w3.org/2000/svg">
-  <rect x="17.215" y="170.718" width="460.079" height="308.473" style="stroke: rgb(0, 0, 0); fill: rgb(138, 138, 138); stroke-width: 9px;"/>
-  <rect x="19.276" y="102.283" width="227.841" height="23.206" style="stroke: rgb(0, 0, 0);"/>
-  <rect x="258.211" y="101.669" width="79.71" height="23.206" style="stroke: rgb(0, 0, 0);"/>
-  <rect x="355.19" y="100.711" width="39.95" height="23.206" style="stroke: rgb(0, 0, 0);"/>
-  <rect x="18.241" y="36.52" width="431.542" height="23.206" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="17.215" y="170.718" width="460.079" height="308.473" style="stroke: rgb(0, 0, 0); stroke-width: 9px; fill: rgb(223, 223, 223);"/>
+  <rect x="17.644" y="97.386" width="227.841" height="43.612" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="290.043" y="97.588" width="79.71" height="45.244" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="419.671" y="98.263" width="39.95" height="42.795" style="stroke: rgb(0, 0, 0);"/>
+  <rect x="16.609" y="18.563" width="431.542" height="43.612" style="stroke: rgb(0, 0, 0);"/>
 </svg>

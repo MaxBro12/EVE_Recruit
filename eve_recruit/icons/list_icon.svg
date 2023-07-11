@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 500 500" width="48px" height="48px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+<svg viewBox="0 0 500 500" width="48px" height="48px" xmlns="http://www.w3.org/2000/svg">
   <rect x="-200.194" width="218.038" height="525.969" style="stroke: rgb(0, 0, 0); fill: rgb(0, 255, 123); visibility: hidden;" y="-15.573"/>
-  <rect x="19.437" width="361.485" height="36.977" style="stroke: rgb(0, 0, 0);" y="19.491"/>
-  <rect x="19.434" width="361.485" height="36.977" style="stroke: rgb(0, 0, 0);" y="94.468"/>
-  <rect x="19.582" width="361.485" height="36.977" style="stroke: rgb(0, 0, 0);" y="172.591"/>
-  <rect x="19.582" width="361.485" height="36.977" style="stroke: rgb(0, 0, 0);" y="258.242"/>
-  <rect x="20.058" width="361.485" height="36.977" style="stroke: rgb(0, 0, 0);" y="337.707"/>
-  <rect x="20.684" width="361.485" height="36.977" style="stroke: rgb(0, 0, 0);" y="419.17"/>
-  <path d="M 937.062 226.538 H 1187.523 L 1187.523 149.865 L 1286.726 278.478 L 1187.523 407.091 L 1187.523 330.418 H 937.062 V 226.538 Z" style="stroke: rgb(0, 0, 0); fill: rgb(99, 99, 99);" transform="matrix(0, 1, -1, 0, 627.171814, -809.361694)" bx:shape="arrow 937.062 149.865 349.664 257.226 103.88 99.203 0 1@73844455"/>
+  <rect x="19.437" width="434.497" height="53.894" style="stroke: rgb(0, 0, 0); fill: rgb(218, 218, 218); stroke-width: 10px;" y="19.491"/>
+  <rect x="18.463" width="434.497" height="53.894" style="stroke: rgb(0, 0, 0); fill: rgb(218, 218, 218); stroke-width: 10px;" y="100.022"/>
+  <rect x="16.682" width="434.497" height="53.894" style="stroke: rgb(0, 0, 0); fill: rgb(218, 218, 218); stroke-width: 10px;" y="181.047"/>
+  <rect x="14.901" width="434.497" height="53.894" style="stroke: rgb(0, 0, 0); fill: rgb(218, 218, 218); stroke-width: 10px;" y="260.292"/>
+  <rect x="14.901" width="434.497" height="53.894" style="stroke: rgb(0, 0, 0); fill: rgb(218, 218, 218); stroke-width: 10px;" y="340.427"/>
+  <rect x="13.91" width="434.497" height="53.894" style="stroke: rgb(0, 0, 0); fill: rgb(218, 218, 218); stroke-width: 10px;" y="421.816"/>
 </svg>

@@ -1,7 +1,6 @@
 from typing import Any
 
 from toml import load, dump
-from ..debug import create_log_file
 
 
 def read(way: str) -> dict[str, Any]:

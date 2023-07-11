@@ -4,10 +4,10 @@ from .mybase import Table
 from .filemanage import load_file, wayfinder
 
 
-def clone_list(name_csv: str) -> bool:
+def clone_list(name_csv: str) -> str:
     if not wayfinder(name_csv):
         create_log_file(f'Cant find csv file {name_csv}')
-        return False
+        return ''
 
     copy_list = ''
     table = Table(name_csv)
@@ -22,21 +22,23 @@ def clone_list(name_csv: str) -> bool:
                 else:
                     copy_list = pilot
         write_to_cb(copy_list)
-        return True
-    return False
+        return copy_list
+    return ''
 
 
-def clone_theme(name_txt: str) -> bool:
+def clone_theme(name_txt: str) -> str:
     if not wayfinder(name_txt):
         create_log_file(f'Cant find txt file {name_txt}')
-        return False
-    write_to_cb(name_txt.split('.')[0])
-    return True
+        return ''
+    ans = name_txt.split('.')[0]
+    write_to_cb(ans)
+    return ans
 
 
-def clone_letter(name_txt: str) -> bool:
+def clone_letter(name_txt: str) -> str:
     if not wayfinder(name_txt):
         create_log_file(f'Cant find txt file {name_txt}')
-        return False
-    write_to_cb(load_file(name_txt))
-    return True
+        return ''
+    ans = load_file(name_txt)
+    write_to_cb(ans)
+    return ans

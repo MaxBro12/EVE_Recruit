@@ -25,5 +25,13 @@ from .clipb import (
     write_to_cb,
 )
 
-from .profile import create_prof
+from .profile import (
+    create_prof,
+    get_theme,
+    change_theme,
+    change_letter,
+    get_letter_way,
+    delete_profile,
+    get_profiles_names,
+)
 from .copy_functions import clone_list, clone_theme, clone_letter

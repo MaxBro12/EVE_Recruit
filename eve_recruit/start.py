@@ -57,5 +57,5 @@ def log_file_check():
         lens = load_file(file_logger).split('\n')
         if len(lens) > max_log_len:
             lens = lens[len(lens) - max_log_len::]
-            save_file(file_logger, ''.join(lens))
+            save_file(file_logger, '\n'.join(lens))
             create_log_file('Log file resave', levelname='debug')

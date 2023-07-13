@@ -41,3 +41,5 @@ file_theme_icon = 'eve_recruit/icons/theme_icon.svg'
 file_letter_icon = 'eve_recruit/icons/letter_icon.svg'
 file_sqeeze_icon = 'eve_recruit/icons/sqeeze_icon.svg'
 file_always_on_icon = 'eve_recruit/icons/alwayson_icon.svg'
+
+file_stylesheet = 'eve_recruit/theme.css'

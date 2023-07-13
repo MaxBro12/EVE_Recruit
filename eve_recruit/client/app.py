@@ -52,6 +52,7 @@ from settings import (
     file_letter_icon,
     file_always_on_icon,
     file_sqeeze_icon,
+    file_stylesheet,
 )
 from lang import lang
 
@@ -61,6 +62,10 @@ class MyAppMain(QMainWindow):
         super().__init__()
         self.app = MyApp(config, profiles, self)
         self.setCentralWidget(self.app)
+
+        with open(file_stylesheet, 'r') as f:
+            self.setStyleSheet(f.read())
+        self.setStyleSheet
 
         # ? Допы
         self.conf = config
@@ -86,14 +91,21 @@ class MyAppMain(QMainWindow):
         self.app.update_full_profile_ch()
         self.change_to_full()
 
-        create_log_file('Application launched successfully', levelname='info')
+        create_log_file(
+            f'Application launched successfully!\nProfiles: {len(profiles)}' +
+            f'\nLast profile: {config["lastprofile"]}' +
+            f'\nUse Self Window: {config["use_self_window"]}',
+            levelname='info'
+        )
 
     def sqeeze_app(self):
         if self.app.currentIndex() == 1:
             # ! Переключаемся на полноразмерную прогу
+            create_log_file('Change to full-size app', levelname='info')
             self.change_to_full()
         else:
             # ! Переключаемся на малоразмерную прогу
+            create_log_file('Change to small app', levelname='info')
             self.change_to_small()
 
     def mousePressEvent(self, event):
@@ -118,7 +130,10 @@ class MyAppMain(QMainWindow):
 
     def always_on_app(self):
         self.conf['alwayson'] = not self.conf['alwayson']
-        self.save_config()
+        create_log_file(
+            f'Always on is now {self.conf["alwayson"]}', levelname='info'
+        )
+        self.save_config(self.conf)
 
     def change_to_small(self):
         self.app.setCurrentIndex(1)
@@ -132,6 +147,7 @@ class MyAppMain(QMainWindow):
     def save_config(self, config):
         self.conf = config
         write(config, file_settings)
+        create_log_file('Config was saved', levelname='info')
 
 
 class MyApp(QStackedWidget):
@@ -228,7 +244,9 @@ class MyApp(QStackedWidget):
     def get_txt_file(*paths) -> str:
         return pjoin(
             *paths,
-            list(filter(lambda x: x.split('.')[1] == 'txt', get_files(pjoin(*paths))))[0]
+            list(filter(
+                lambda x: x.split('.')[1] == 'txt', get_files(pjoin(*paths))
+            ))[0]
         )
 
     def theme_change(self):
@@ -242,7 +260,7 @@ class MyApp(QStackedWidget):
         )
 
     def update_full_profile_ch(self):
-        # self.full.profile_ch.setCurrentText(self.config['lastprofile'])
+        self.full.profile_ch.setCurrentText(self.config['lastprofile'])
         itms = [
             self.full.profile_ch.itemText(i) for i in range(
                 self.full.profile_ch.count()
@@ -253,14 +271,16 @@ class MyApp(QStackedWidget):
                 self.full.profile_ch.addItem(p)
 
     def change_profile(self):
-        print("WTF")
         self.config['lastprofile'] = self.full.profile_ch.currentText()
         self.save_config(self.config)
         self.update_app_data()
 
     def add_profile(self):
-        create_prof(self.full.new_profile.text())
-        self.update_full_profile_ch()
+        if self.full.new_profile.text() != '':
+            create_prof(self.full.new_profile.text())
+            self.update_full_profile_ch()
+        else:
+            create_log_file('Try to create empty profile', levelname='info')
 
     def update_app_data(self):
         self.full.theme_text.setText(
@@ -365,26 +385,29 @@ class FullSizedApp(QWidget):
         self.row_letter = QHBoxLayout()
         self.row_letter.setContentsMargins(0, 0, 0, 0)
         self.row_letter.setSpacing(5)
+        self.row_letter.setAlignment(Qt.AlignmentFlag.AlignBottom)
 
         self.letter_b = QPushButton(self)
         self.letter_b.setToolTip(lang[conf['lang']]['letter_b'])
         self.letter_b.setIcon(QIcon(file_letter_icon))
-        self.letter_b.setFixedWidth(25)
-        self.row_letter.addWidget(self.letter_b)
+        self.letter_b.setFixedSize(QSize(25, 25))
+        self.row_letter.addWidget(self.letter_b, 1, Qt.AlignmentFlag.AlignTop)
 
         self.letter_text = QTextEdit(self)
+        self.letter_text.setMinimumSize(QSize(100, 30))
         self.letter_text.setToolTip(lang[conf['lang']]['letter_text'])
-        self.row_letter.addWidget(self.letter_text)
+        self.row_letter.addWidget(self.letter_text, 0)
 
         # ! Главная разметка ==================================================
         self.main_l = QVBoxLayout()
         self.main_l.setContentsMargins(3, 3, 3, 3)
         self.main_l.setSpacing(5)
 
-        self.main_l.addLayout(self.row_top)
-        self.main_l.addLayout(self.row_list)
-        self.main_l.addLayout(self.row_theme)
-        self.main_l.addLayout(self.row_letter)
+        self.main_l.addLayout(self.row_top, 0)
+        self.main_l.addLayout(self.row_list, 0)
+        self.main_l.addLayout(self.row_theme, 0)
+        self.main_l.addLayout(self.row_letter, 1)
+        self.main_l.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         self.setLayout(self.main_l)
 

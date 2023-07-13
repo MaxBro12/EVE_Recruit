@@ -15,23 +15,25 @@ def clone_list(name_csv: str) -> str:
     pilots = pilots.split('\n')
 
     if len(pilots) > 0:
-        for pilot in pilots:
+        for pilot in pilots[:50]:
             if table.add(pilot):
                 if copy_list != '':
                     copy_list += ', ' + pilot
                 else:
                     copy_list = pilot
         write_to_cb(copy_list)
+        create_log_file(
+            f'List of pilots copied: {len(pilots)}', levelname='info'
+        )
         return copy_list
+    create_log_file('No pilots in call', 'info')
     return ''
 
 
 def clone_theme(name_txt: str) -> str:
-    if not wayfinder(name_txt):
-        create_log_file(f'Cant find txt file {name_txt}')
-        return ''
     ans = name_txt.split('.')[0]
     write_to_cb(ans)
+    create_log_file(f'Theme copied: {ans}', levelname='info')
     return ans
 
 
@@ -41,4 +43,5 @@ def clone_letter(name_txt: str) -> str:
         return ''
     ans = load_file(name_txt)
     write_to_cb(ans)
+    create_log_file(f'Letter copied', levelname='info')
     return ans

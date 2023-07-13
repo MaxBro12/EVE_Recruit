@@ -1,0 +1,63 @@
+QPushButton {
+    border-width: 1px;
+    border-color: black;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: transparent;
+}
+QPushButton:hover {
+    border-width: 1px;
+    border-color: blue;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: transparent;
+}
+QPushButton:pressed {
+    border-width: 1px;
+    border-color: powderblue;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: rgba(0, 132, 255, 0.651);
+}
+QLineEdit {
+    border-width: 1px;
+    border-color: black;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: transparent;
+}
+QLineEdit:hover {
+    border-width: 1px;
+    border-color: blue;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: transparent;
+}
+QTextEdit {
+    border-width: 1px;
+    border-color: black;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: transparent;
+}
+QTextEdit:hover {
+    border-width: 1px;
+    border-color: blue;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: transparent;
+}
+QComboBox {
+    border-width: 1px;
+    border-color: black;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: transparent;
+}
+QComboBox:hover {
+    border-width: 1px;
+    border-color: blue;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: transparent;
+}

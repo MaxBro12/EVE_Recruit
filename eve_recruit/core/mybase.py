@@ -45,7 +45,7 @@ class Table:
         self.save()
 
 
-def create_csv(name: str, inner_data: dict):
+def create_csv(name: str, inner_data: dict = {}):
     DataFrame([], columns=['pilot']).to_csv(name, index=False)
 
 

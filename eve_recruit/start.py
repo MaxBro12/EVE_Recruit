@@ -14,7 +14,9 @@ from core import (
     write,
 
     wayfinder,
-    pjoin
+    pjoin,
+    ProfileNotLoaded,
+    ProfileCreationError,
 )
 
 from settings import (
@@ -44,7 +46,7 @@ def main_check() -> tuple:
         create_folder(dir_profile)
         create_log_file('PROFILE FOLDER CREATED', levelname='info')
         if not create_prof(defaut_profile):
-            pass  # TODO: Сделать окно ошибки
+            raise ProfileCreationError
     profiles = get_files(dir_profile)
 
     log_file_check()

@@ -1,6 +1,6 @@
 lang = {
     'ru': {
-        'list_b': 'Скопировать список пилотов кому отправить сообщение',
+        'list_b': 'Вставить список пилотов из буфера обмена',
         'theme_b': 'Скопировать тему письма',
         'letter_b': 'Скопировать текст письма',
         'always_on_b': 'Переключить режим "always on top".\n Для применения изменений требуется перезапуск приложения',
@@ -8,6 +8,7 @@ lang = {
         'hide_b': 'Свернуть приложение',
         'exit_b': 'Выйти из приложения',
 
+        'delete_b': 'Удалить текущий профиль',
         'profile_ch': 'Выбрать сохраненный профиль',
         'new_profile': 'Введите название нового профиля',
         'add_profile': 'Создать новый профиль с названием введенным слева',
@@ -17,7 +18,7 @@ lang = {
         'letter_text': 'Измените тест письма',
     },
     'eng': {
-        'list_b': 'Copy list of pilots to send message to',
+        'list_b': 'Paste list of pilots from clipboard',
         'theme_b': 'Copy email subject',
         'letter_b': 'Copy text letter',
         'always_on_b': 'Toggle "always on top" mode.\n Application restart required to apply changes',

@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QApplication
+
 from core import create_log_file
-from client import MyAppMain
+from client import MyAppMain, Error_App
 from start import main_check
 
 
@@ -17,8 +18,7 @@ if __name__ == '__main__':
         main()
     except Exception as err:
         create_log_file(err)
-        print(
-            'Что-то пошло не так : (\n' +
-            'Отправьте файл "error.log" разработчику!\n' +
-            'maxbro126@gmail.com'
-        )
+        app = QApplication([])
+        widget = Error_App(err)
+        widget.show()
+        exit(app.exec())

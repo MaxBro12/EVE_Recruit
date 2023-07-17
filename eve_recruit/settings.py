@@ -2,6 +2,9 @@
 # ! Важное
 max_log_len = 100
 
+# ! Настройки пилотов
+pilot_pattern = r'[\w|-]*[ |.|\w][\w|-]*'
+
 # ! Папки, файлы
 dir_profile = 'profile'
 file_csv = 'data.csv'
@@ -31,6 +34,9 @@ small_width = 215
 small_height = 35
 
 
+error_found = 'Found error! Please link logger.log to developer\nError log:'
+
+
 file_hide_icon = 'eve_recruit/icons/hide_icon.svg'
 file_exit_icon = 'eve_recruit/icons/exit_icon.svg'
 
@@ -41,5 +47,6 @@ file_theme_icon = 'eve_recruit/icons/theme_icon.svg'
 file_letter_icon = 'eve_recruit/icons/letter_icon.svg'
 file_sqeeze_icon = 'eve_recruit/icons/sqeeze_icon.svg'
 file_always_on_icon = 'eve_recruit/icons/alwayson_icon.svg'
+file_delete_b_icon = 'eve_recruit/icons/delete_icon.svg'
 
 file_stylesheet = 'eve_recruit/theme.css'

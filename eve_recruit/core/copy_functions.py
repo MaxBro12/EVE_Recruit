@@ -3,6 +3,10 @@ from .clipb import get_from_cp, write_to_cb
 from .mybase import Table
 from .filemanage import load_file, wayfinder
 
+from re import fullmatch
+
+from settings import pilot_pattern
+
 
 def clone_list(name_csv: str) -> str:
     if not wayfinder(name_csv):
@@ -16,14 +20,16 @@ def clone_list(name_csv: str) -> str:
 
     if len(pilots) > 0:
         for pilot in pilots[:50]:
-            if table.add(pilot):
-                if copy_list != '':
-                    copy_list += ', ' + pilot
-                else:
-                    copy_list = pilot
+            if fullmatch(pilot_pattern, pilot):
+                if table.add(pilot):
+                    if copy_list != '':
+                        copy_list += ', ' + pilot
+                    else:
+                        copy_list = pilot
         write_to_cb(copy_list)
         create_log_file(
-            f'List of pilots copied: {len(pilots)}', levelname='info'
+            f'List of pilots copied: {len(pilots)}',
+            levelname='info'
         )
         return copy_list
     create_log_file('No pilots in call', 'info')

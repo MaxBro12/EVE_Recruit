@@ -52,6 +52,7 @@ from settings import (
     file_letter_icon,
     file_always_on_icon,
     file_sqeeze_icon,
+    file_delete_b_icon,
     file_stylesheet,
 )
 from lang import lang
@@ -63,9 +64,10 @@ class MyAppMain(QMainWindow):
         self.app = MyApp(config, profiles, self)
         self.setCentralWidget(self.app)
 
+        # * Темы
         with open(file_stylesheet, 'r') as f:
             self.setStyleSheet(f.read())
-        self.setStyleSheet
+        self.setWindowOpacity(config['opacity'])
 
         # ? Допы
         self.conf = config
@@ -190,6 +192,7 @@ class MyApp(QStackedWidget):
         self.full.profile_ch.currentIndexChanged.connect(self.change_profile)
 
         self.full.add_profile.clicked.connect(self.add_profile)
+        self.full.delete_b.clicked.connect(self.delete_profile)
 
         # ! Подключаем кнопки SMALL
         if config['use_self_window']:
@@ -260,7 +263,16 @@ class MyApp(QStackedWidget):
         )
 
     def update_full_profile_ch(self):
+        for prof in get_profiles_names():
+            itms = [
+                self.full.profile_ch.itemText(i) for i in range(
+                    self.full.profile_ch.count()
+                )
+            ]
+            if prof not in itms:
+                self.full.profile_ch.addItem(prof)
         self.full.profile_ch.setCurrentText(self.config['lastprofile'])
+        '''
         itms = [
             self.full.profile_ch.itemText(i) for i in range(
                 self.full.profile_ch.count()
@@ -268,7 +280,7 @@ class MyApp(QStackedWidget):
         ]
         for p in get_profiles_names():
             if p != self.full.profile_ch.currentText() and p not in itms:
-                self.full.profile_ch.addItem(p)
+                self.full.profile_ch.addItem(p)'''
 
     def change_profile(self):
         self.config['lastprofile'] = self.full.profile_ch.currentText()
@@ -281,6 +293,13 @@ class MyApp(QStackedWidget):
             self.update_full_profile_ch()
         else:
             create_log_file('Try to create empty profile', levelname='info')
+
+    def delete_profile(self):
+        if delete_profile(self.full.profile_ch.currentText()):
+            index = self.full.profile_ch.findText(self.full.profile_ch.currentText())
+            self.full.profile_ch.removeItem(index)
+            self.update_full_profile_ch()
+            self.update_app_data()
 
     def update_app_data(self):
         self.full.theme_text.setText(
@@ -307,6 +326,12 @@ class FullSizedApp(QWidget):
         self.profile_ch.setPlaceholderText(lang[conf['lang']]['profile_ch'])
         self.profile_ch.setFixedHeight(25)
         self.row_top.addWidget(self.profile_ch, 0)
+
+        self.delete_b = QPushButton(self)
+        self.delete_b.setToolTip(lang[conf['lang']]['delete_b'])
+        self.delete_b.setIcon(QIcon(file_delete_b_icon))
+        self.delete_b.setFixedSize(QSize(25, 25))
+        self.row_top.addWidget(self.delete_b, 0)
 
         self.row_top.addSpacing(10)
 

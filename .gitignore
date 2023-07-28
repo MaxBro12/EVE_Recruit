@@ -1,6 +1,7 @@
 __pycache__
 venv
 .vscode
+output
 
 logger.log
 settings.toml

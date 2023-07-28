@@ -19,6 +19,7 @@ from .filemanage import (
     wayfinder,
     pathfinder,
     pjoin,
+    pjoin_r,
 )
 from .clipb import (
     get_from_cp,

@@ -15,6 +15,7 @@ from .simplefolders import (
 
 from .path import (
     pjoin,
+    pjoin_r,
     is_file_fast,
     is_file_slow,
     wayfinder,

@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QApplication
+from sys import exit
 
 from core import create_log_file
 from client import MyAppMain, Error_App

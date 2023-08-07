@@ -8,6 +8,7 @@ from PySide6.QtWidgets import (
     QComboBox,
     QLineEdit,
     QTextEdit,
+    QPlainTextEdit,
 )
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt, QSize, Slot, Signal, QPoint
@@ -24,6 +25,7 @@ from core import (
     pjoin_r,
     get_files,
     load_file,
+    load_file_bytes,
     read,
     write,
     get_theme,
@@ -33,8 +35,8 @@ from core import (
     get_profiles_names,
     create_prof,
     delete_profile,
+    write_to_cb,
 )
-from eve_recruit.core.clipb import write_to_cb
 
 from settings import (
     file_settings,
@@ -60,6 +62,7 @@ from settings import (
     file_delete_b_icon,
     file_stylesheet,
 )
+
 from lang import lang
 
 
@@ -240,14 +243,15 @@ class MyApp(QStackedWidget):
 
     @Slot()
     def clone_list_b(self):
-        self.config['todays_letters'] += 1
-        self.save_config()
-        if self.config['todays_letters'] > self.config['max_letters_warning']:
-            Warning_App(lang[self.config['lang']]['max_letter_warning'])
-        else:
-            self.full.list_text.setText(clone_list(
-                pjoin(dir_profile, self.config['lastprofile'], file_csv)
-            ))
+        # self.config['todays_letters'] += 1
+        # self.save_config(self.config)
+        # if self.config['todays_letters'] >= self.config['max_letters_warning']:
+        #     warn = Warning_App(lang[self.config['lang']]['max_letter_warning'])
+        #     warn.show()
+
+        self.full.list_text.setText(clone_list(
+            pjoin(dir_profile, self.config['lastprofile'], file_csv)
+        ))
 
     @Slot()
     def clone_theme_b(self):
@@ -257,7 +261,7 @@ class MyApp(QStackedWidget):
 
     @Slot()
     def clone_letter_b(self):
-        self.full.letter_text.setText(
+        self.full.letter_text.setPlainText(
             clone_letter(get_letter_way(self.config['lastprofile']))
         )
 
@@ -277,12 +281,11 @@ class MyApp(QStackedWidget):
 
     def letter_change(self):
         change_letter(
-            self.config['lastprofile'], self.full.letter_text.toHtml()
+            self.config['lastprofile'], self.full.letter_text.toPlainText()
         )
 
     def list_change(self):
         write_to_cb(self.full.list_text.text())
-        
 
     def update_full_profile_ch(self):
         for prof in get_profiles_names():
@@ -318,7 +321,9 @@ class MyApp(QStackedWidget):
 
     def delete_profile(self):
         if delete_profile(self.full.profile_ch.currentText()):
-            index = self.full.profile_ch.findText(self.full.profile_ch.currentText())
+            index = self.full.profile_ch.findText(
+                self.full.profile_ch.currentText()
+            )
             self.full.profile_ch.removeItem(index)
             self.update_full_profile_ch()
             self.update_app_data()
@@ -327,8 +332,8 @@ class MyApp(QStackedWidget):
         self.full.theme_text.setText(
             get_theme(self.config['lastprofile']).split('.')[0]
         )
-        self.full.letter_text.setText(
-            load_file(get_letter_way(self.config['lastprofile']))
+        self.full.letter_text.setPlainText(
+            load_file_bytes(get_letter_way(self.config['lastprofile']))
         )
 
 
@@ -440,7 +445,7 @@ class FullSizedApp(QWidget):
         self.letter_b.setFixedSize(QSize(25, 25))
         self.row_letter.addWidget(self.letter_b, 1, Qt.AlignmentFlag.AlignTop)
 
-        self.letter_text = QTextEdit(self)
+        self.letter_text = QPlainTextEdit(self)
         self.letter_text.setMinimumSize(QSize(100, 30))
         self.letter_text.setToolTip(lang[conf['lang']]['letter_text'])
         self.row_letter.addWidget(self.letter_text, 0)

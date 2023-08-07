@@ -3,6 +3,7 @@ from .filemanage import (
     get_files,
 
     load_file,
+    load_file_bytes,
     save_file,
 
     remove_dir_tree,

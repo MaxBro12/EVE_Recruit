@@ -5,7 +5,7 @@ from settings import error_found
 
 
 class Error_App(QDialog):
-    def __init__(self, msg: str):
+    def __init__(self, msg: str | Exception):
         super().__init__()
         # ? Окно
         self.setWindowTitle('ERROR')

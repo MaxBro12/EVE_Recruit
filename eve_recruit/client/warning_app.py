@@ -2,9 +2,15 @@ from PySide6.QtWidgets import QDialog, QLabel, QPushButton, QVBoxLayout
 from PySide6.QtCore import QSize, Qt
 
 
+from settings import file_app_icon
+
+
 class Warning_App(QDialog):
     def __init__(self, msg) -> None:
         super().__init__()
+        # ? Окно
+        self.setWindowTitle('Warning!')
+        self.setBaseSize(QSize(200, 60))
 
         # ! Разметка
         self.row = QVBoxLayout()

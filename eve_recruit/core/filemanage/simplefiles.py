@@ -24,7 +24,7 @@ def create_file(
 
 def save_file(name: str, inner: str) -> bool:
     try:
-        with open(name, 'w') as f:
+        with open(name, 'w', encoding='utf-8') as f:
             f.write(inner)
             return True
     except FileNotFoundError:
@@ -34,8 +34,19 @@ def save_file(name: str, inner: str) -> bool:
 
 def load_file(name: str) -> str:
     try:
+        create_log_file(f'Load: {name}')
         with open(name, 'r') as f:
-            return ''.join(f.readlines())
+            return f.read()
+    except FileNotFoundError:
+        create_log_file(f'Файл {name} не найден')
+        return ''
+
+
+def load_file_bytes(name: str) -> str:
+    try:
+        create_log_file(f'Load bytes: {name}')
+        with open(name, 'r', encoding='utf-8') as f:
+            return f.read()
     except FileNotFoundError:
         create_log_file(f'Файл {name} не найден')
         return ''

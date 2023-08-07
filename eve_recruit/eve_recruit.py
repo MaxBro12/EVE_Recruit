@@ -19,7 +19,9 @@ if __name__ == '__main__':
         main()
     except Exception as err:
         create_log_file(err)
-        app = QApplication([])
+
+        if QApplication.instance() is None:
+            app = QApplication([])
         widget = Error_App(err)
         widget.show()
-        exit(app.exec())
+        exit(QApplication.exec())

@@ -1,7 +1,7 @@
 from .debug import create_log_file
 from .clipb import get_from_cp, write_to_cb
 from .mybase import Table
-from .filemanage import load_file, wayfinder
+from .filemanage import load_file, load_file_bytes, wayfinder
 
 from re import fullmatch
 
@@ -47,7 +47,7 @@ def clone_letter(name_txt: str) -> str:
     if not wayfinder(name_txt):
         create_log_file(f'Cant find txt file {name_txt}')
         return ''
-    ans = load_file(name_txt)
+    ans = load_file_bytes(name_txt)
     write_to_cb(ans)
     create_log_file(f'Letter copied', levelname='info')
     return ans

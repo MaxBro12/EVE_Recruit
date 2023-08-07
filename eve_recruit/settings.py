@@ -41,8 +41,8 @@ small_height = 35
 error_found = 'Found error! Please link logger.log to developer\nError log:'
 
 
-file_hide_icon = 'eve_recruit/icons/hide_icon.svg'
-file_exit_icon = 'eve_recruit/icons/exit_icon.svg'
+file_hide_icon = 'icons/hide_icon.svg'
+file_exit_icon = 'icons/exit_icon.svg'
 
 file_app_icon = 'icons/app_icon.svg'
 file_list_icon = 'icons/list_icon.svg'

@@ -3,6 +3,7 @@ from .simplefiles import (
     save_file,
     rename_file,
     load_file,
+    load_file_bytes,
     delete_file,
     get_files,
 )
@@ -34,6 +35,7 @@ __all__ = [
     'save_file',
     'rename_file',
     'load_file',
+    'load_file_bytes',
     'delete_file',
     'get_files',
 

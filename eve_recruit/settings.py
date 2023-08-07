@@ -21,6 +21,10 @@ file_settings_in = {
     'resizeable': True,
     'alwayson': True,
     'use_self_window': False,
+    'letters_warning': True,
+    'last_day': '',
+    'todays_letters': 0,
+    'max_letters_warning': 15,
 }
 
 defaut_letter = 'defaut.txt'

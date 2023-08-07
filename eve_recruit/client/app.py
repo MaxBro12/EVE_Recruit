@@ -11,6 +11,9 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt, QSize, Slot, Signal, QPoint
+from datetime import date
+
+from .warning_app import Warning_App
 
 from core import (
     create_log_file,
@@ -31,6 +34,7 @@ from core import (
     create_prof,
     delete_profile,
 )
+from eve_recruit.core.clipb import write_to_cb
 
 from settings import (
     file_settings,
@@ -70,8 +74,14 @@ class MyAppMain(QMainWindow):
             self.setStyleSheet(f.read())
         self.setWindowOpacity(config['opacity'])
 
-        # ? Допы
+        # ? Конфиг
         self.conf = config
+
+        if config != date.today():
+            self.conf['last_day'] = date.today()
+            self.conf['todays_letters'] = 0
+            self.save_config(self.conf)
+
         self.oldPosition = QPoint()
 
         # ? Статус бар
@@ -184,6 +194,8 @@ class MyApp(QStackedWidget):
         self.full.always_on_b.clicked.connect(self.always_on_app)
 
         self.full.list_b.clicked.connect(self.clone_list_b)
+        self.full.list_text.editingFinished.connect(self.list_change)
+
         self.full.theme_b.clicked.connect(self.clone_theme_b)
         self.full.letter_b.clicked.connect(self.clone_letter_b)
 
@@ -228,9 +240,14 @@ class MyApp(QStackedWidget):
 
     @Slot()
     def clone_list_b(self):
-        self.full.list_text.setText(clone_list(
-            pjoin(dir_profile, self.config['lastprofile'], file_csv)
-        ))
+        self.config['todays_letters'] += 1
+        self.save_config()
+        if self.config['todays_letters'] > self.config['max_letters_warning']:
+            Warning_App(lang[self.config['lang']]['max_letter_warning'])
+        else:
+            self.full.list_text.setText(clone_list(
+                pjoin(dir_profile, self.config['lastprofile'], file_csv)
+            ))
 
     @Slot()
     def clone_theme_b(self):
@@ -260,8 +277,12 @@ class MyApp(QStackedWidget):
 
     def letter_change(self):
         change_letter(
-            self.config['lastprofile'], self.full.letter_text.toPlainText()
+            self.config['lastprofile'], self.full.letter_text.toHtml()
         )
+
+    def list_change(self):
+        write_to_cb(self.full.list_text.text())
+        
 
     def update_full_profile_ch(self):
         for prof in get_profiles_names():

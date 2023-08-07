@@ -16,6 +16,8 @@ lang = {
         'list_text': 'Дополнительно скопирован список пилотов для отправки',
         'theme_text': 'Измените тему письма',
         'letter_text': 'Измените тест письма',
+
+        'max_letter_warning': 'Внимание! Вы отправили слишком много писам сегодня, это может привести к бану он CCP!\n(Данное сообщение можно отключить в настройках)',
     },
     'eng': {
         'list_b': 'Paste list of pilots from clipboard',
@@ -33,5 +35,7 @@ lang = {
         'list_text': 'Additionally copied the list of pilots to send',
         'theme_text': 'Change email subject',
         'letter_text': 'Change letter text',
+
+        'max_letter_warning': 'Attention! You have sent too many emails today, this may result in a ban from CCP!\n(This message can be disabled in the settings)',
     }
 }

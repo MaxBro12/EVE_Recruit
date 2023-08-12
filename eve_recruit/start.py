@@ -3,6 +3,7 @@ from core import (
     create_log_file,
 
     load_file,
+    load_file_bytes,
     save_file,
 
     create_file,

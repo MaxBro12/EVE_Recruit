@@ -1,16 +1,18 @@
+from typing import Final
+
 
 # ! Важное
-max_log_len = 100
+MAX_LOG_LEN: Final = 100
 
 # ! Настройки пилотов
-pilot_pattern = r'[\w|-]*[ |.|\w][\w|-]*'
+PILOT_PATTERN: Final = r'[\w|-]*[ |.|\w][\w|-]*'
 
 # ! Папки, файлы
-dir_profile = 'profile'
-file_csv = 'data.csv'
-file_settings = 'settings.toml'
-file_logger = 'logger.log'
-file_settings_in = {
+DIR_PROFILE: Final = 'profile'
+FILE_CSV: Final = 'data.csv'
+FILE_SETTINGS: Final = 'settings.toml'
+FILE_LOGGER: Final = 'logger.log'
+FILE_SETTINGS_IN: Final = {
     'pos_x': 550,
     'pos_y': 350,
     'width': 300,
@@ -27,30 +29,31 @@ file_settings_in = {
     'max_letters_warning': 15,
 }
 
-defaut_letter = 'defaut.txt'
-defaut_profile = 'defaut'
+DEFAUT_LETTER: Final = 'defaut.txt'
+DEFAUT_PROFILE: Final = 'defaut'
 
 # ! Клиент
-full_min_width = 400
-full_min_height = 600
+FULL_MIN_WIDHT: Final = 400
+FULL_MIN_HEIGHT: Final = 600
 
-small_width = 215
-small_height = 35
-
-
-error_found = 'Found error! Please link logger.log to developer\nError log:'
+SMALL_WIDHT: Final = 215
+SMALL_HEIGHT: Final = 35
 
 
-file_hide_icon = 'icons/hide_icon.svg'
-file_exit_icon = 'icons/exit_icon.svg'
+ERROR_FOUND: Final = 'Found error! Please link logger.log to developer\nError log:'
 
-file_app_icon = 'icons/app_icon.svg'
-file_list_icon = 'icons/list_icon.svg'
-file_add_icon = 'icons/add_icon.svg'
-file_theme_icon = 'icons/theme_icon.svg'
-file_letter_icon = 'icons/letter_icon.svg'
-file_sqeeze_icon = 'icons/sqeeze_icon.svg'
-file_always_on_icon = 'icons/alwayson_icon.svg'
-file_delete_b_icon = 'icons/delete_icon.svg'
 
-file_stylesheet = 'theme.css'
+FILE_HIDE_ICON: Final = 'icons/hide_icon.svg'
+FILE_EXIT_ICON: Final = 'icons/exit_icon.svg'
+
+FILE_APP_ICON: Final = 'icons/app_icon.svg'
+FILE_LIST_ICON: Final = 'icons/list_icon.svg'
+FILE_ADD_ICON: Final = 'icons/add_icon.svg'
+FILE_THEME_ICON: Final = 'icons/theme_icon.svg'
+FILE_LETTER_ICON: Final = 'icons/letter_icon.svg'
+FILE_SQEEZE_ICON: Final = 'icons/sqeeze_icon.svg'
+FILE_ALWAYS_ON_ICON: Final = 'icons/alwayson_icon.svg'
+FILE_DELETE_B_ICON: Final = 'icons/delete_icon.svg'
+
+FILE_STYLESHEET: Final = 'theme.css'
+

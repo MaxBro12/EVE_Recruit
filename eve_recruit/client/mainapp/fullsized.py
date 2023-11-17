@@ -23,7 +23,6 @@ from settings import (
     FILE_ALWAYS_ON_ICON,
     FILE_SQEEZE_ICON,
     FILE_DELETE_B_ICON,
-    FILE_ADD_ICON,
     FILE_HIDE_ICON,
     FILE_EXIT_ICON,
 )

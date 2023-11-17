@@ -17,7 +17,7 @@ FILE_SETTINGS_IN: Final = {
     'pos_y': 350,
     'width': 300,
     'height': 200,
-    'opacity': 1,
+    'opacity': 1.0,
     'lastprofile': '',
     'lang': 'ru',
     'resizeable': True,

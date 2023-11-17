@@ -57,6 +57,7 @@ def check_settings() -> dict:
     else:
         conf = read_toml(FILE_SETTINGS)
         if not toml_type_check(FILE_SETTINGS_IN, conf):
+            print('WTF')
             create_settings()
     return read_toml(FILE_SETTINGS)
 

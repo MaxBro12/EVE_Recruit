@@ -24,15 +24,20 @@ def toml_type_check(typed_dict: dict, checking_dict: dict) -> bool:
     """Возращает True, если типизация и ключи dict1 соответсвуют dict2"""
     try:
         if len(typed_dict) != len(checking_dict):
-            print(f'{len(typed_dict)} != {len(checking_dict)}')
+            create_log_file(
+                f'TOML len: {len(typed_dict)} != {len(checking_dict)}'
+            )
             return False
 
         for key in typed_dict.keys():
             if type(checking_dict[key]) != type(typed_dict[key]):
-                print(f'{key}: {type(checking_dict[key])} != {type(typed_dict[key])}')
+                create_log_file(
+                    f'TOML type: {key}: ' +
+                    f'{type(checking_dict[key])} != {type(typed_dict[key])}'
+                )
                 return False
 
         return True
     except KeyError:
-        print('KEYERROR!')
+        create_log_file('TOML key error!')
         return False

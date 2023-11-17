@@ -82,7 +82,7 @@ class MyAppMain(QMainWindow):
         self.conf = config
 
         if config != date.today():
-            self.conf['last_day'] = date.today()
+            self.conf['last_day'] = str(date.today())
             self.conf['todays_letters'] = 0
             self.save_config(self.conf)
 
@@ -208,7 +208,7 @@ class MyApp(QStackedWidget):
 
         self.full.profile_ch.currentIndexChanged.connect(self.change_profile)
 
-        self.full.add_profile.clicked.connect(self.add_profile)
+        self.full.new_profile.editingFinished.connect(self.add_profile)
         self.full.delete_b.clicked.connect(self.delete_profile)
 
         # ! Подключаем кнопки SMALL

@@ -59,11 +59,11 @@ class FullSizedApp(QWidget):
         self.new_profile.setMaximumHeight(25)
         self.row_top.addWidget(self.new_profile)
 
-        self.add_profile = QPushButton(self)
-        self.add_profile.setToolTip(lang[conf['lang']]['add_profile'])
-        self.add_profile.setIcon(QIcon(pjoin_r(FILE_ADD_ICON)))
-        self.add_profile.setFixedSize(QSize(25, 25))
-        self.row_top.addWidget(self.add_profile, 0)
+        # self.add_profile = QPushButton(self)
+        # self.add_profile.setToolTip(lang[conf['lang']]['add_profile'])
+        # self.add_profile.setIcon(QIcon(pjoin_r(FILE_ADD_ICON)))
+        # self.add_profile.setFixedSize(QSize(25, 25))
+        # self.row_top.addWidget(self.add_profile, 0)
 
         self.row_top.addSpacing(10)
 

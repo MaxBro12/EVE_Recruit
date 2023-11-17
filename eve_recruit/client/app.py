@@ -26,8 +26,8 @@ from core import (
     get_files,
     load_file,
     load_file_bytes,
-    read,
-    write,
+    read_toml,
+    write_to_toml,
     get_theme,
     get_letter_way,
     change_letter,
@@ -39,28 +39,28 @@ from core import (
 )
 
 from settings import (
-    file_settings,
+    FILE_SETTINGS,
 
-    dir_profile,
-    file_csv,
+    DIR_PROFILE,
+    FILE_CSV,
 
-    small_width,
-    small_height,
+    SMALL_WIDTH,
+    SMALL_HEIGHT,
 
-    full_min_width,
-    full_min_height,
+    FULL_MIN_WIDTH,
+    FULL_MIN_HEIGHT,
 
-    file_app_icon,
-    file_add_icon,
-    file_hide_icon,
-    file_exit_icon,
-    file_list_icon,
-    file_theme_icon,
-    file_letter_icon,
-    file_always_on_icon,
-    file_sqeeze_icon,
-    file_delete_b_icon,
-    file_stylesheet,
+    FILE_APP_ICON,
+    FILE_ADD_ICON,
+    FILE_HIDE_ICON,
+    FILE_EXIT_ICON,
+    FILE_LIST_ICON,
+    FILE_THEME_ICON,
+    FILE_LETTER_ICON,
+    FILE_ALWAYS_ON_ICON,
+    FILE_SQEEZE_ICON,
+    FILE_DELETE_B_ICON,
+    FILE_STYLESHEET,
 )
 
 from lang import lang
@@ -73,7 +73,7 @@ class MyAppMain(QMainWindow):
         self.setCentralWidget(self.app)
 
         # * Темы
-        with open(pjoin_r(file_stylesheet), 'r') as f:
+        with open(pjoin_r(FILE_STYLESHEET), 'r') as f:
             self.setStyleSheet(f.read())
         self.setWindowOpacity(config['opacity'])
 
@@ -91,7 +91,7 @@ class MyAppMain(QMainWindow):
         # self.status_bar = self.statusBar()
 
         # ? Топ панель
-        self.setWindowIcon(QIcon(pjoin_r(file_app_icon)))
+        self.setWindowIcon(QIcon(pjoin_r(FILE_APP_ICON)))
         self.setWindowTitle('EVE RECRUIT')
         self.setWindowFlag(Qt.FramelessWindowHint, self.conf['use_self_window'])
         self.setWindowFlag(Qt.WindowStaysOnTopHint, self.conf['alwayson'])
@@ -153,16 +153,16 @@ class MyAppMain(QMainWindow):
 
     def change_to_small(self):
         self.app.setCurrentIndex(1)
-        self.setMinimumSize(QSize(small_width, small_height))
-        self.resize(QSize(small_width, small_height))
+        self.setMinimumSize(QSize(SMALL_WIDTH, SMALL_HEIGHT))
+        self.resize(QSize(SMALL_WIDTH, SMALL_HEIGHT))
 
     def change_to_full(self):
         self.app.setCurrentIndex(0)
-        self.resize(QSize(full_min_width, full_min_height))
+        self.resize(QSize(FULL_MIN_WIDTH, FULL_MIN_HEIGHT))
 
     def save_config(self, config):
         self.conf = config
-        write(config, file_settings)
+        write(config, FILE_SETTINGS)
         create_log_file('Config was saved', levelname='info')
 
 
@@ -250,7 +250,7 @@ class MyApp(QStackedWidget):
         #     warn.show()
 
         self.full.list_text.setText(clone_list(
-            pjoin(dir_profile, self.config['lastprofile'], file_csv)
+            pjoin(DIR_PROFILE, self.config['lastprofile'], FILE_CSV)
         ))
 
     @Slot()
@@ -356,7 +356,7 @@ class FullSizedApp(QWidget):
 
         self.delete_b = QPushButton(self)
         self.delete_b.setToolTip(lang[conf['lang']]['delete_b'])
-        self.delete_b.setIcon(QIcon(pjoin_r(file_delete_b_icon)))
+        self.delete_b.setIcon(QIcon(pjoin_r(FILE_DELETE_B_ICON)))
         self.delete_b.setFixedSize(QSize(25, 25))
         self.row_top.addWidget(self.delete_b, 0)
 
@@ -369,7 +369,7 @@ class FullSizedApp(QWidget):
 
         self.add_profile = QPushButton(self)
         self.add_profile.setToolTip(lang[conf['lang']]['add_profile'])
-        self.add_profile.setIcon(QIcon(pjoin_r(file_add_icon)))
+        self.add_profile.setIcon(QIcon(pjoin_r(FILE_ADD_ICON)))
         self.add_profile.setFixedSize(QSize(25, 25))
         self.row_top.addWidget(self.add_profile, 0)
 
@@ -377,27 +377,27 @@ class FullSizedApp(QWidget):
 
         self.always_on_b = QPushButton(self)
         self.always_on_b.setToolTip(lang[conf['lang']]['always_on_b'])
-        self.always_on_b.setIcon(QIcon(pjoin_r(file_always_on_icon)))
+        self.always_on_b.setIcon(QIcon(pjoin_r(FILE_ALWAYS_ON_ICON)))
         self.always_on_b.setFixedSize(QSize(25, 25))
         self.row_top.addWidget(self.always_on_b, 0)
 
         self.sqeeze_b = QPushButton(self)
         self.sqeeze_b.setToolTip(lang[conf['lang']]['sqeeze_b'])
-        self.sqeeze_b.setIcon(QIcon(pjoin_r(file_sqeeze_icon)))
+        self.sqeeze_b.setIcon(QIcon(pjoin_r(FILE_SQEEZE_ICON)))
         self.sqeeze_b.setFixedSize(QSize(25, 25))
         self.row_top.addWidget(self.sqeeze_b, 0)
 
         if conf['use_self_window']:
             self.hide_b = QPushButton(self)
             self.hide_b.setToolTip(lang[conf['lang']]['hide_b'])
-            self.hide_b.setIcon(QIcon(pjoin_r(file_hide_icon)))
+            self.hide_b.setIcon(QIcon(pjoin_r(FILE_HIDE_ICON)))
             self.hide_b.setFixedSize(QSize(25, 25))
             self.row_top.addWidget(self.hide_b, 0)
 
         if conf['use_self_window']:
             self.exit_b = QPushButton(self)
             self.exit_b.setToolTip(lang[conf['lang']]['exit_b'])
-            self.exit_b.setIcon(QIcon(pjoin_r(file_exit_icon)))
+            self.exit_b.setIcon(QIcon(pjoin_r(FILE_EXIT_ICON)))
             self.exit_b.setFixedSize(QSize(25, 25))
             self.row_top.addWidget(self.exit_b, 0)
 
@@ -408,7 +408,7 @@ class FullSizedApp(QWidget):
 
         self.list_b = QPushButton(self)
         self.list_b.setToolTip(lang[conf['lang']]['list_b'])
-        self.list_b.setIcon(QIcon(pjoin_r(file_list_icon)))
+        self.list_b.setIcon(QIcon(pjoin_r(FILE_LIST_ICON)))
         self.list_b.setFixedSize(QSize(25, 25))
         self.row_list.addWidget(self.list_b)
 
@@ -424,7 +424,7 @@ class FullSizedApp(QWidget):
 
         self.theme_b = QPushButton(self)
         self.theme_b.setToolTip(lang[conf['lang']]['theme_b'])
-        self.theme_b.setIcon(QIcon(pjoin_r(file_theme_icon)))
+        self.theme_b.setIcon(QIcon(pjoin_r(FILE_THEME_ICON)))
         self.theme_b.setFixedSize(QSize(25, 25))
         self.row_theme.addWidget(self.theme_b)
 
@@ -441,7 +441,7 @@ class FullSizedApp(QWidget):
 
         self.letter_b = QPushButton(self)
         self.letter_b.setToolTip(lang[conf['lang']]['letter_b'])
-        self.letter_b.setIcon(QIcon(pjoin_r(file_letter_icon)))
+        self.letter_b.setIcon(QIcon(pjoin_r(FILE_LETTER_ICON)))
         self.letter_b.setFixedSize(QSize(25, 25))
         self.row_letter.addWidget(self.letter_b, 1, Qt.AlignmentFlag.AlignTop)
 
@@ -475,44 +475,44 @@ class SmallSizedApp(QWidget):
 
         self.list_b = QPushButton(self)
         self.list_b.setToolTip(lang[conf['lang']]['list_b'])
-        self.list_b.setIcon(QIcon(pjoin_r(file_list_icon)))
+        self.list_b.setIcon(QIcon(pjoin_r(FILE_LIST_ICON)))
         self.list_b.setFixedSize(QSize(25, 25))
         self.row.addWidget(self.list_b)
 
         self.theme_b = QPushButton(self)
         self.theme_b.setToolTip(lang[conf['lang']]['theme_b'])
-        self.theme_b.setIcon(QIcon(pjoin_r(file_theme_icon)))
+        self.theme_b.setIcon(QIcon(pjoin_r(FILE_THEME_ICON)))
         self.theme_b.setFixedSize(QSize(25, 25))
         self.row.addWidget(self.theme_b)
 
         self.letter_b = QPushButton(self)
         self.letter_b.setToolTip(lang[conf['lang']]['letter_b'])
-        self.letter_b.setIcon(QIcon(pjoin_r(file_letter_icon)))
+        self.letter_b.setIcon(QIcon(pjoin_r(FILE_LETTER_ICON)))
         self.letter_b.setFixedSize(QSize(25, 25))
         self.row.addWidget(self.letter_b)
 
         self.always_on_b = QPushButton(self)
         self.always_on_b.setToolTip(lang[conf['lang']]['always_on_b'])
-        self.always_on_b.setIcon(QIcon(pjoin_r(file_always_on_icon)))
+        self.always_on_b.setIcon(QIcon(pjoin_r(FILE_ALWAYS_ON_ICON)))
         self.always_on_b.setFixedSize(QSize(25, 25))
         self.row.addWidget(self.always_on_b)
 
         self.sqeeze_b = QPushButton(self)
         self.sqeeze_b.setToolTip(lang[conf['lang']]['sqeeze_b'])
-        self.sqeeze_b.setIcon(QIcon(pjoin_r(file_sqeeze_icon)))
+        self.sqeeze_b.setIcon(QIcon(pjoin_r(FILE_SQEEZE_ICON)))
         self.sqeeze_b.setFixedSize(QSize(25, 25))
         self.row.addWidget(self.sqeeze_b)
 
         if conf['use_self_window']:
             self.hide_b = QPushButton(self)
             self.hide_b.setToolTip(lang[conf['lang']]['hide_b'])
-            self.hide_b.setIcon(QIcon(pjoin_r(file_hide_icon)))
+            self.hide_b.setIcon(QIcon(pjoin_r(FILE_HIDE_ICON)))
             self.hide_b.setFixedSize(QSize(25, 25))
             self.row.addWidget(self.hide_b)
 
         if conf['use_self_window']:
             self.exit_b = QPushButton(self)
             self.exit_b.setToolTip(lang[conf['lang']]['exit_b'])
-            self.exit_b.setIcon(QIcon(pjoin_r(file_exit_icon)))
+            self.exit_b.setIcon(QIcon(pjoin_r(FILE_EXIT_ICON)))
             self.exit_b.setFixedSize(QSize(25, 25))
             self.row.addWidget(self.exit_b)

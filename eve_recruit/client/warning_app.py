@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QDialog, QLabel, QPushButton, QVBoxLayout
 from PySide6.QtCore import QSize, Qt
 
 
-from settings import file_app_icon
+from settings import FILE_APP_ICON
 
 
 class Warning_App(QDialog):

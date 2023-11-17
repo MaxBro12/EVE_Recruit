@@ -18,7 +18,7 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as err:
-        create_log_file(err)
+        create_log_file(err, 'crit')
 
         if QApplication.instance() is None:
             app = QApplication([])

@@ -26,8 +26,10 @@ from .path import (
 )
 
 from .tomlreader import (
-    read,
-    write
+    read_toml,
+    write_to_toml,
+    update_dict_to_type,
+    toml_type_check,
 )
 
 __all__ = [
@@ -51,6 +53,8 @@ __all__ = [
     'pathfinder',
     'remove_dir_tree',
 
-    'read',
-    'write',
+    'read_toml',
+    'write_to_toml',
+    'update_dict_to_type',
+    'toml_type_check',
 ]

@@ -3,62 +3,69 @@ from core import (
     create_log_file,
 
     load_file,
-    load_file_bytes,
     save_file,
 
-    create_file,
     create_folder,
 
     get_files,
 
-    read,
-    write,
+    read_toml,
+    write_to_toml,
+    toml_type_check,
 
     wayfinder,
-    pjoin,
-    ProfileNotLoaded,
     ProfileCreationError,
 )
 
 from settings import (
-    max_log_len,
+    MAX_LOG_LEN,
 
-    file_settings,
-    file_settings_in,
+    FILE_SETTINGS,
+    FILE_SETTINGS_IN,
 
-    file_logger,
+    FILE_LOGGER,
 
-    dir_profile,
-    file_csv,
-    defaut_profile,
-    defaut_letter,
+    DIR_PROFILE,
+    DEFAUT_PROFILE,
 )
 
 
 def main_check() -> tuple:
-    if not wayfinder(file_settings):
-        defaut = file_settings_in
-        defaut['lastprofile'] = defaut_profile
-        write(defaut, file_settings)
+    conf = check_settings()
 
-    conf = read(file_settings)
-
-    if not wayfinder(dir_profile):
-        create_folder(dir_profile)
+    if not wayfinder(DIR_PROFILE):
+        create_folder(DIR_PROFILE)
         create_log_file('PROFILE FOLDER CREATED', levelname='info')
-        if not create_prof(defaut_profile):
+        if not create_prof(DEFAUT_PROFILE):
             raise ProfileCreationError
-    profiles = get_files(dir_profile)
+    profiles = get_files(DIR_PROFILE)
 
     log_file_check()
 
     return profiles, conf
 
 
+def create_settings():
+    defaut = FILE_SETTINGS_IN
+    defaut['lastprofile'] = DEFAUT_PROFILE
+    write_to_toml(defaut, FILE_SETTINGS)
+
+
+def check_settings() -> dict:
+    if not wayfinder(FILE_SETTINGS):
+        create_settings()
+    else:
+        conf = read_toml(FILE_SETTINGS)
+        if not toml_type_check(FILE_SETTINGS_IN, conf):
+            create_settings()
+    return read_toml(FILE_SETTINGS)
+
+
 def log_file_check():
-    if wayfinder(file_logger):
-        lens = load_file(file_logger).split('\n')
-        if len(lens) > max_log_len:
-            lens = lens[len(lens) - max_log_len::]
-            save_file(file_logger, '\n'.join(lens))
+    if wayfinder(FILE_LOGGER):
+        lens = load_file(FILE_LOGGER).split('\n')
+        if len(lens) > MAX_LOG_LEN:
+            lens = lens[len(lens) - MAX_LOG_LEN::]
+            save_file(FILE_LOGGER, '\n'.join(lens))
             create_log_file('Log file resave', levelname='debug')
+

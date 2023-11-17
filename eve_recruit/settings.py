@@ -2,7 +2,7 @@ from typing import Final
 
 
 # ! Важное
-MAX_LOG_LEN: Final = 100
+MAX_LOG_LEN: Final = 500
 
 # ! Настройки пилотов
 PILOT_PATTERN: Final = r'[\w|-]*[ |.|\w][\w|-]*'
@@ -33,10 +33,10 @@ DEFAUT_LETTER: Final = 'defaut.txt'
 DEFAUT_PROFILE: Final = 'defaut'
 
 # ! Клиент
-FULL_MIN_WIDHT: Final = 400
+FULL_MIN_WIDTH: Final = 400
 FULL_MIN_HEIGHT: Final = 600
 
-SMALL_WIDHT: Final = 215
+SMALL_WIDTH: Final = 215
 SMALL_HEIGHT: Final = 35
 
 

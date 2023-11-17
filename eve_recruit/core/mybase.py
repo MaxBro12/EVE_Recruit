@@ -2,15 +2,7 @@ from pandas import (
     DataFrame,
     concat,
     read_csv,
-    read_xml,
-    read_json,
-    read_sql,
-    read_html,
-    read_clipboard,
 )
-from io import StringIO
-
-from os.path import splitext
 
 
 class Table:

@@ -14,8 +14,10 @@ from .filemanage import (
     rename_file,
     rename_folder,
 
-    read,
-    write,
+    read_toml,
+    write_to_toml,
+    toml_type_check,
+    update_dict_to_type,
 
     wayfinder,
     pathfinder,

@@ -1,11 +1,11 @@
 __pycache__
 venv
 .vscode
-output
+.idea
 
 logger.log
 settings.toml
 profile
+output
 test.*
 
-py_to_exe.bat

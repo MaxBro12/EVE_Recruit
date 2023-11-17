@@ -1,11 +1,11 @@
 from .debug import create_log_file
 from .clipb import get_from_cp, write_to_cb
 from .mybase import Table
-from .filemanage import load_file, load_file_bytes, wayfinder
+from .filemanage import load_file_bytes, wayfinder
 
 from re import fullmatch
 
-from settings import pilot_pattern
+from settings import PILOT_PATTERN
 
 
 def clone_list(name_csv: str) -> str:
@@ -20,7 +20,7 @@ def clone_list(name_csv: str) -> str:
 
     if len(pilots) > 0:
         for pilot in pilots[:50]:
-            if fullmatch(pilot_pattern, pilot):
+            if fullmatch(PILOT_PATTERN, pilot):
                 if table.add(pilot):
                     if copy_list != '':
                         copy_list += ', ' + pilot

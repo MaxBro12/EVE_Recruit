@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QDialog, QLabel, QTextEdit, QVBoxLayout
 from PySide6.QtCore import QSize
 
-from settings import error_found
+from settings import ERROR_FOUND
 
 
 class Error_App(QDialog):
@@ -19,7 +19,7 @@ class Error_App(QDialog):
 
         # ? Виджеты
         self.error_found = QLabel()
-        self.error_found.setText(error_found)
+        self.error_found.setText(ERROR_FOUND)
         self.col.addWidget(self.error_found)
 
         self.error_log = QTextEdit()

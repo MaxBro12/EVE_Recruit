@@ -11,6 +11,13 @@ def error_found(err):
     create_log_file(err)
 
 
+def log_decorator(func):
+    def wrapper(*args, **kwarks):
+        func(*args, **kwarks)
+        create_log_file(f'Function {func.__name__} called!')
+    return wrapper
+
+
 def create_log_file(
         log: Union[Exception, str],
         levelname: Level = 'debug',
